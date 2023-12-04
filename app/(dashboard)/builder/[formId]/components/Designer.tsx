@@ -7,6 +7,8 @@ import { FormElementInstance } from '@/types/elements';
 import { useDesigner } from '@/hooks/useDesigner';
 import { FormElements } from '@/components/FormElements';
 import { idGenerator } from '@/lib/idGenerator';
+import DesignerElementWrapper from './DesignerElementWrapper';
+
 export default function Designer() {
   const droppable = useDroppable({
     id: 'designer-drop-area',
@@ -15,7 +17,13 @@ export default function Designer() {
     },
   });
 
-  const { elements, addElement } = useDesigner();
+  const {
+    elements,
+    addElement,
+    removeElement,
+    selectedElement,
+    setSelectedElement,
+  } = useDesigner();
 
   useDndMonitor({
     onDragEnd: (event) => {
@@ -24,19 +32,73 @@ export default function Designer() {
 
       const isDesignerButtonElement =
         active.data?.current?.isDesignerButtonElement;
+      const isDroppingOverDesignerDropArea =
+        over.data?.current?.isDesignerDropArea;
 
-      if (isDesignerButtonElement) {
+      if (isDesignerButtonElement && isDroppingOverDesignerDropArea) {
         const type = active.data?.current?.type as FormElementInstance['type'];
         const newElement = FormElements[type].construct(idGenerator());
 
-        addElement(0, newElement);
+        addElement(elements.length, newElement);
+        return;
+      }
+
+      const isDroppingOverDesignerElement =
+        over.data?.current?.isTopHalfDesignerElement ||
+        over.data?.current?.isBottomHalfDesignerElement;
+
+      if (isDesignerButtonElement && isDroppingOverDesignerElement) {
+        const type = active.data?.current?.type as FormElementInstance['type'];
+        const newElement = FormElements[type].construct(idGenerator());
+        const overElementIndex = elements.findIndex(
+          (el) => el.id === over.data?.current?.elementId
+        );
+        if (overElementIndex === -1) {
+          throw new Error('Element not found');
+        }
+
+        const newIndex = over.data?.current?.isTopHalfDesignerElement
+          ? overElementIndex
+          : overElementIndex + 1;
+
+        addElement(newIndex, newElement);
+        return;
+      }
+
+      const isDraggingDesignerElement = active.data?.current?.isDesignerElement;
+      if (isDroppingOverDesignerElement && isDraggingDesignerElement) {
+        const activeId = active.data?.current?.elementId;
+        const overId = over.data?.current?.elementId;
+
+        const activeElementIndex = elements.findIndex(
+          (el) => el.id === activeId
+        );
+        const overElementIndex = elements.findIndex((el) => el.id === overId);
+
+        if (activeElementIndex === -1 || overElementIndex === -1) {
+          throw new Error('Element not found');
+        }
+
+        const activeElement = { ...elements[activeElementIndex] };
+        removeElement(activeId);
+
+        const newIndex = over.data?.current?.isTopHalfDesignerElement
+          ? overElementIndex
+          : overElementIndex + 1;
+
+        addElement(newIndex, activeElement);
       }
     },
   });
 
   return (
     <div className='flex w-full h-full'>
-      <div className='p-4 w-full'>
+      <div
+        className='p-4 w-full'
+        onClick={() => {
+          if (selectedElement) setSelectedElement(null);
+        }}
+      >
         <div
           ref={droppable.setNodeRef}
           className={cn(
@@ -51,17 +113,12 @@ export default function Designer() {
           )}
           {elements.length > 0 && (
             <div className='flex flex-col w-full gap-2 p-4'>
-              {elements.map((element) => {
-                const DesignerElement =
-                  FormElements[element.type].designerComponent;
-
-                return (
-                  <DesignerElement key={element.id} elementInstance={element} />
-                );
-              })}
+              {elements.map((element) => (
+                <DesignerElementWrapper key={element.id} element={element} />
+              ))}
             </div>
           )}
-          {droppable.isOver && (
+          {droppable.isOver && elements.length === 0 && (
             <div className='p-4 w-full'>
               <div className='h-30 rounded-md bg-primary/20'></div>
             </div>

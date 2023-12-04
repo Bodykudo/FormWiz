@@ -22,5 +22,7 @@ export type FormElement = {
     elementInstance: FormElementInstance;
   }>;
   formComponent: FC;
-  propetiesComponent: FC;
+  propetiesComponent: FC<{
+    elementInstance: FormElementInstance;
+  }>;
 };
