@@ -1,0 +1,36 @@
+'use client';
+
+import { userPreviewModal } from '@/src/hooks/usePreviewModal';
+import { Dialog, DialogContent } from './ui/dialog';
+import { useDesigner } from '@/src/hooks/useDesigner';
+import { FormElements } from './FormElements';
+
+export default function PreviewFormModal() {
+  const { isOpen, onClose } = userPreviewModal();
+  const { elements } = useDesigner();
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className='w-screen h-screen max-h-screen max-w-full flex flex-col flex-grow p-0 gap-0'>
+        <div className='px-4 py-2 border-b'>
+          <p className='text-lg font-bold text-muted-foreground'>
+            Form preview
+          </p>
+          <p className='text-sm text-muted-foreground'>
+            This is how your form will look like to your users.
+          </p>
+        </div>
+        <div className='bg-accents flex flex-col flex-grow items-center justify-center p-4 bg-paper dark:bg-paper-dark overflow-y-auto'>
+          <div className='max-w-[620px] flex flex-col flex-grow gap-4 bg-background h-full w-full rounded-2xl p-8 overflow-y-auto'>
+            {elements.map((element) => {
+              const FormComponent = FormElements[element.type].formComponent;
+              return (
+                <FormComponent key={element.id} elementInstance={element} />
+              );
+            })}
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
