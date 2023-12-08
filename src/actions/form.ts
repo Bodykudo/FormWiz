@@ -1,21 +1,21 @@
 'use server';
 
+import { auth } from '@clerk/nextjs';
 import prismadb from '@/src/lib/prismadb';
 import { formSchema, formSchemaType } from '@/src/types/form';
-import { currentUser } from '@clerk/nextjs';
 
 class UserNotFoundError extends Error {}
 
 export async function GetFormStats() {
-  const user = await currentUser();
+  const { userId } = auth();
 
-  if (!user) {
+  if (!userId) {
     throw new UserNotFoundError();
   }
 
   const stats = await prismadb.form.aggregate({
     where: {
-      userId: user.id,
+      userId,
     },
     _sum: {
       visits: true,
@@ -39,9 +39,9 @@ export async function CreateForm(data: formSchemaType) {
     throw new Error('Form not valid');
   }
 
-  const user = await currentUser();
+  const { userId } = auth();
 
-  if (!user) {
+  if (!userId) {
     throw new UserNotFoundError();
   }
 
@@ -49,7 +49,7 @@ export async function CreateForm(data: formSchemaType) {
 
   const form = await prismadb.form.create({
     data: {
-      userId: user.id,
+      userId,
       name,
       description,
     },
@@ -63,15 +63,15 @@ export async function CreateForm(data: formSchemaType) {
 }
 
 export async function GetForms() {
-  const user = await currentUser();
+  const { userId } = auth();
 
-  if (!user) {
+  if (!userId) {
     throw new UserNotFoundError();
   }
 
   const forms = await prismadb.form.findMany({
     where: {
-      userId: user.id,
+      userId,
     },
     orderBy: {
       createdAt: 'desc',
@@ -82,16 +82,16 @@ export async function GetForms() {
 }
 
 export async function GetFormById(id: number) {
-  const user = await currentUser();
+  const { userId } = auth();
 
-  if (!user) {
+  if (!userId) {
     throw new UserNotFoundError();
   }
 
   const form = await prismadb.form.findFirst({
     where: {
       id,
-      userId: user.id,
+      userId,
     },
   });
 
@@ -99,16 +99,16 @@ export async function GetFormById(id: number) {
 }
 
 export async function UpdateFormContent(id: number, jsonContent: string) {
-  const user = await currentUser();
+  const { userId } = auth();
 
-  if (!user) {
+  if (!userId) {
     throw new UserNotFoundError();
   }
 
   const form = await prismadb.form.update({
     where: {
       id,
-      userId: user.id,
+      userId,
     },
     data: {
       content: jsonContent,
@@ -119,19 +119,84 @@ export async function UpdateFormContent(id: number, jsonContent: string) {
 }
 
 export async function PublishForm(id: number) {
-  const user = await currentUser();
+  const { userId } = auth();
 
-  if (!user) {
+  if (!userId) {
     throw new UserNotFoundError();
   }
 
   const form = await prismadb.form.update({
     where: {
       id,
-      userId: user.id,
+      userId,
     },
     data: {
       published: true,
+    },
+  });
+
+  return form;
+}
+
+export async function GetFormContentByURL(url: string) {
+  const { userId } = auth();
+
+  if (!userId) {
+    throw new UserNotFoundError();
+  }
+
+  const form = await prismadb.form.update({
+    where: {
+      shareURL: url,
+    },
+    select: {
+      content: true,
+    },
+    data: {
+      visits: {
+        increment: 1,
+      },
+    },
+  });
+
+  return form;
+}
+
+export async function SubmitForm(url: string, content: string) {
+  const form = await prismadb.form.update({
+    where: {
+      shareURL: url,
+      published: true,
+    },
+    data: {
+      submissions: {
+        increment: 1,
+      },
+      formSubmissions: {
+        create: {
+          content,
+        },
+      },
+    },
+  });
+
+  return form;
+}
+
+export async function GetFormWithSubmissions(id: number) {
+  const { userId } = auth();
+
+  if (!userId) {
+    throw new UserNotFoundError();
+  }
+
+  const form = await prismadb.form.findFirst({
+    where: {
+      id,
+      userId,
+    },
+    include: {
+      formSubmissions: true,
     },
   });
 

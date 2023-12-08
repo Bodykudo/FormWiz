@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { MdTextFields } from 'react-icons/md';
+import { Bs123 } from 'react-icons/bs';
 
 import {
   DesignerComponentProps,
@@ -23,19 +23,19 @@ import {
   FormItem,
   FormLabel,
 } from '../ui/form';
+import { Switch } from '../ui/switch';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
-import { Switch } from '../ui/switch';
 import { useDesigner } from '@/src/hooks/useDesigner';
 import { cn } from '@/src/lib/utils';
 
-const type: ElementsType = 'TextField';
+const type: ElementsType = 'NumberField';
 
 const extraAttributes = {
-  label: 'Text field',
+  label: 'Number field',
   description: 'Description',
   required: true,
-  placeholder: 'Value here...',
+  placeholder: '0',
 };
 
 const propertiesSchema = z.object({
@@ -45,7 +45,7 @@ const propertiesSchema = z.object({
   placeholder: z.string().max(50),
 });
 
-export const TextFieldFormElement: FormElement = {
+export const NumberFieldFormElement: FormElement = {
   type,
 
   construct: (id: string) => ({
@@ -55,8 +55,8 @@ export const TextFieldFormElement: FormElement = {
   }),
 
   designerButtonElement: {
-    icon: MdTextFields,
-    label: 'Text Field',
+    icon: Bs123,
+    label: 'Number Field',
   },
 
   designerComponent: DesignerComponent,
@@ -89,7 +89,7 @@ function DesignerComponent({ elementInstance }: DesignerComponentProps) {
         {label}
         {required && <span className='text-red-500'>*</span>}
       </Label>
-      <Input readOnly disabled placeholder={placeholder} />
+      <Input readOnly type='number' disabled placeholder={placeholder} />
       {description && (
         <p className='text-muted-foreground text-[0.8rem]'>{description}</p>
       )}
@@ -119,12 +119,16 @@ function FormComponent({
         {required && <span className='text-red-500'>*</span>}
       </Label>
       <Input
+        type='number'
         className={cn(error && 'border-red-500')}
         placeholder={placeholder}
         onChange={(e) => setValue(e.target.value)}
         onBlur={(e) => {
           if (!submitValue) return;
-          const valid = TextFieldFormElement.validate(element, e.target.value);
+          const valid = NumberFieldFormElement.validate(
+            element,
+            e.target.value
+          );
           setError(!valid);
           if (!valid) return;
           submitValue(element.id, e.target.value);

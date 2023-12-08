@@ -1,10 +1,11 @@
 'use client';
 
-import { SidebarButtonElementDragOverlay } from '@/src/app/(dashboard)/builder/[formId]/components/SidebarButtonElement';
-import { Active, DragOverlay, useDndMonitor } from '@dnd-kit/core';
 import { useState } from 'react';
-import { FormElements } from './FormElements';
+import { Active, DragOverlay, useDndMonitor } from '@dnd-kit/core';
 import { ElementsType } from '@/src/types/elements';
+
+import { SidebarButtonElementDragOverlay } from './SidebarButtonElement';
+import { FormElements } from '@/src/components/FormElements';
 import { useDesigner } from '@/src/hooks/useDesigner';
 
 export default function DragOverlayWrapper() {

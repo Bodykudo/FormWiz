@@ -1,10 +1,7 @@
 'use client';
 
-import PreviewFormButton from '@/src/components/PreviewFormButton';
-import PublishFormButton from '@/src/components/PublishFormButton';
-import SaveFormButton from '@/src/components/SaveFormButton';
-import { Form } from '@prisma/client';
-import Designer from './Designer';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import {
   DndContext,
   MouseSensor,
@@ -12,16 +9,20 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import DragOverlayWrapper from '@/src/components/DragOverlayWrapper';
-import { useEffect, useState } from 'react';
-import { useDesigner } from '@/src/hooks/useDesigner';
-import { ImSpinner2 } from 'react-icons/im';
-import { Input } from '@/src/components/ui/input';
-import { Button } from '@/src/components/ui/button';
-import { toast } from '@/src/components/ui/use-toast';
-import Link from 'next/link';
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import Confetti from 'react-confetti';
+import { ImSpinner2 } from 'react-icons/im';
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+import { Form } from '@prisma/client';
+
+import { Button } from '@/src/components/ui/button';
+import { Input } from '@/src/components/ui/input';
+import { toast } from '@/src/components/ui/use-toast';
+import PublishFormButton from '@/src/components/PublishFormButton';
+import PreviewFormButton from '@/src/components/PreviewFormButton';
+import SaveFormButton from './SaveFormButton';
+import Designer from './Designer';
+import DragOverlayWrapper from './DragOverlayWrapper';
+import { useDesigner } from '@/src/hooks/useDesigner';
 
 interface FormBuilderProps {
   form: Form;
@@ -44,12 +45,14 @@ export default function FormBuilder({ form }: FormBuilderProps) {
 
   const sensors = useSensors(mouseSensor, touchSensor);
 
-  const { setElements } = useDesigner();
+  const { setElements, setSelectedElement } = useDesigner();
 
   useEffect(() => {
     if (!isLoading) return;
 
     setElements(JSON.parse(form.content));
+    setSelectedElement(null);
+
     const loadingTimout = setTimeout(() => {
       setIsLoading(false);
     }, 500);
@@ -57,7 +60,7 @@ export default function FormBuilder({ form }: FormBuilderProps) {
     return () => {
       clearTimeout(loadingTimout);
     };
-  }, [form, setElements, isLoading, setIsLoading]);
+  }, [form, setElements, isLoading, setIsLoading, setSelectedElement]);
 
   if (isLoading) {
     return (

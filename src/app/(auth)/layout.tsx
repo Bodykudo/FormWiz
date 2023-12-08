@@ -1,6 +1,6 @@
+import { ReactNode } from 'react';
 import Logo from '@/src/components/Logo';
 import ModeSwitcher from '@/src/components/ModeSwitcher';
-import React, { ReactNode } from 'react';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (

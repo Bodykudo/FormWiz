@@ -1,5 +1,5 @@
-import CreateFormModal from '@/src/components/CreateFormModal';
 import Navbar from '@/src/components/Navbar';
+import CreateFormModal from '@/src/components/CreateFormModal';
 
 export default function RootLayout({
   children,

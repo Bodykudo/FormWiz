@@ -1,10 +1,13 @@
-import { HiSaveAs } from 'react-icons/hi';
-import { Button } from './ui/button';
-import { useDesigner } from '@/src/hooks/useDesigner';
-import { UpdateFormContent } from '@/src/actions/form';
-import { toast } from './ui/use-toast';
+'use client';
+
 import { useTransition } from 'react';
+import { HiSaveAs } from 'react-icons/hi';
 import { FaSpinner } from 'react-icons/fa';
+
+import { UpdateFormContent } from '@/src/actions/form';
+import { Button } from '@/src/components/ui/button';
+import { toast } from '@/src/components/ui/use-toast';
+import { useDesigner } from '@/src/hooks/useDesigner';
 
 interface SaveFormButtonProps {
   id: number;

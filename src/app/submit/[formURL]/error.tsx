@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/src/components/ui/button';
 
-export default function SubmitFormErrorPage({ error }: { error: Error }) {
+export default function BuilderErrorPage({ error }: { error: Error }) {
   useEffect(() => {
     console.log(error);
   }, [error]);

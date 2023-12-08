@@ -1,6 +1,14 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { ImSpinner2 } from 'react-icons/im';
+
+import { CreateForm } from '@/src/actions/form';
+import { formSchema, formSchemaType } from '@/src/types/form';
+
 import {
   Dialog,
   DialogContent,
@@ -11,23 +19,18 @@ import {
 } from './ui/dialog';
 import { Button } from './ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
 import { Input } from './ui/input';
-import { useToast } from './ui/use-toast';
-import { CreateForm } from '@/src/actions/form';
 import { Textarea } from './ui/textarea';
-import { formSchema, formSchemaType } from '@/src/types/form';
-import { useRouter } from 'next/navigation';
+import { toast } from './ui/use-toast';
 import { useFormModal } from '@/src/hooks/useFormModal';
 
 export default function CreateFormModal() {
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
   const form = useForm<formSchemaType>({
     resolver: zodResolver(formSchema),
   });
-
   const {
     handleSubmit,
     formState: { isSubmitting },
@@ -36,11 +39,9 @@ export default function CreateFormModal() {
 
   const { isOpen, onClose } = useFormModal();
 
-  const { toast } = useToast();
-
   const onSubmit = async (values: formSchemaType) => {
     try {
-      const form = await CreateForm(values);
+      await CreateForm(values);
       toast({
         title: 'Success',
         description: 'Form created successfully',
@@ -56,6 +57,14 @@ export default function CreateFormModal() {
       });
     }
   };
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>

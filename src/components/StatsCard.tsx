@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+import { cn } from '@/src/lib/utils';
 import {
   Card,
   CardContent,
@@ -5,8 +7,6 @@ import {
   CardTitle,
 } from '@/src/components/ui/card';
 import { Skeleton } from '@/src/components/ui/skeleton';
-import { cn } from '@/src/lib/utils';
-import { ReactNode } from 'react';
 
 interface StatsCardProps {
   title: string;

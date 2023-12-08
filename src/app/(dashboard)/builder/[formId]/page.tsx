@@ -1,5 +1,5 @@
 import { GetFormById } from '@/src/actions/form';
-import FormBuilder from './components/FormBuilder';
+import FormBuilder from './_components/FormBuilder';
 
 interface BuilderPageProps {
   params: {

@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { Separator } from '@/src/components/ui/separator';
 import CreateFormButton from '@/src/components/CreateFormButton';
-import FormCards from './components/FormCards';
-import FormCardSkeleton from './components/FormCardSkeleton';
 import StatsCards from '@/src/components/StatsCards';
 import StatsWrapper from '@/src/components/StatsWrapper';
+import FormCards from './_components/FormCards';
+import FormCardSkeleton from './_components/FormCardSkeleton';
 
 export default function HomePage() {
   return (

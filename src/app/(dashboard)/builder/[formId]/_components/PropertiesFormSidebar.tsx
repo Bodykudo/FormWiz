@@ -1,10 +1,10 @@
 'use client';
 
-import { FormElements } from '@/src/components/FormElements';
+import { AiOutlineClose } from 'react-icons/ai';
 import { Button } from '@/src/components/ui/button';
 import { Separator } from '@/src/components/ui/separator';
+import { FormElements } from '@/src/components/FormElements';
 import { useDesigner } from '@/src/hooks/useDesigner';
-import { AiOutlineClose } from 'react-icons/ai';
 
 export default function PropertiesFormSidebar() {
   const { selectedElement, setSelectedElement } = useDesigner();

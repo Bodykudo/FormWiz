@@ -1,13 +1,23 @@
 'use client';
 
-import { userPreviewModal } from '@/src/hooks/usePreviewModal';
+import { useEffect, useState } from 'react';
+import { FormElements } from './FormElements';
 import { Dialog, DialogContent } from './ui/dialog';
 import { useDesigner } from '@/src/hooks/useDesigner';
-import { FormElements } from './FormElements';
+import { usePreviewModal } from '@/src/hooks/usePreviewModal';
 
 export default function PreviewFormModal() {
-  const { isOpen, onClose } = userPreviewModal();
+  const [mounted, setMounted] = useState(false);
   const { elements } = useDesigner();
+  const { isOpen, onClose } = usePreviewModal();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>

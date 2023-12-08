@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/src/components/ui/button';
 import { useEffect, useState } from 'react';
+import { Button } from '@/src/components/ui/button';
 
 interface VisitButtonProps {
   shareURL: string;
@@ -9,8 +9,6 @@ interface VisitButtonProps {
 
 export default function VisitButton({ shareURL }: VisitButtonProps) {
   const [mounted, setMounted] = useState(false);
-
-  const shareLink = `${window.location.origin}/submit/${shareURL}`;
 
   useEffect(() => {
     setMounted(true);
@@ -20,6 +18,7 @@ export default function VisitButton({ shareURL }: VisitButtonProps) {
     return null;
   }
 
+  const shareLink = `${window.location.origin}/submit/${shareURL}`;
   return (
     <Button
       className='w-[200px]'

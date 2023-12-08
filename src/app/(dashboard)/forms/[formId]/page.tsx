@@ -1,9 +1,10 @@
-import { GetFormById } from '@/src/actions/form';
-import FormLinkShare from '@/src/components/FormLinkShare';
-import StatsCards from '@/src/components/StatsCards';
-import VisitButton from '@/src/components/VisitButton';
-import SubmissionsTable from './components/SubmissionsTable';
 import { redirect } from 'next/navigation';
+import { GetFormById } from '@/src/actions/form';
+
+import StatsCards from '@/src/components/StatsCards';
+import SubmissionsTable from './_components/SubmissionsTable';
+import VisitButton from './_components/VisitButton';
+import FormLinkShare from './_components/FormLinkShare';
 
 interface BuilderPageProps {
   params: {

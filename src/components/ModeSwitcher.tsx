@@ -1,9 +1,9 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { Tabs, TabsList, TabsTrigger } from './ui/tabs';
 import { DesktopIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { cn } from '@/src/lib/utils';
+import { Tabs, TabsList, TabsTrigger } from './ui/tabs';
 
 export default function ModeSwitcher() {
   const { theme, setTheme } = useTheme();

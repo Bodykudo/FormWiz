@@ -1,13 +1,15 @@
 'use client';
 
-import { cn } from '@/src/lib/utils';
-import DesignerSidebar from './DesignerSidebar';
 import { useDndMonitor, useDroppable } from '@dnd-kit/core';
 import { FormElementInstance } from '@/src/types/elements';
-import { useDesigner } from '@/src/hooks/useDesigner';
-import { FormElements } from '@/src/components/FormElements';
-import { idGenerator } from '@/src/lib/idGenerator';
+
+import DesignerSidebar from './DesignerSidebar';
 import DesignerElementWrapper from './DesignerElementWrapper';
+import { FormElements } from '@/src/components/FormElements';
+import { useDesigner } from '@/src/hooks/useDesigner';
+
+import { cn } from '@/src/lib/utils';
+import { idGenerator } from '@/src/lib/idGenerator';
 
 export default function Designer() {
   const droppable = useDroppable({

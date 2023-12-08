@@ -1,6 +1,9 @@
 'use client';
 
-import { FaIcons } from 'react-icons/fa';
+import { useEffect, useState, useTransition } from 'react';
+import { useRouter } from 'next/navigation';
+import { FaSpinner } from 'react-icons/fa';
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,16 +14,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from './ui/alert-dialog';
-import { useTransition } from 'react';
-import { usePublishModal } from '@/src/hooks/usePublishModal';
 import { toast } from './ui/use-toast';
+import { usePublishModal } from '@/src/hooks/usePublishModal';
 import { PublishForm } from '@/src/actions/form';
-import { useRouter } from 'next/navigation';
 
 export default function PublishFormAlert() {
+  const [mounted, setMounted] = useState(false);
   const [loading, startTransition] = useTransition();
-  const { isOpen, onClose, id } = usePublishModal();
   const router = useRouter();
+  const { isOpen, onClose, id } = usePublishModal();
 
   const publishForm = async () => {
     try {
@@ -40,6 +42,14 @@ export default function PublishFormAlert() {
       });
     }
   };
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <AlertDialog open={isOpen} onOpenChange={onClose}>
@@ -65,7 +75,7 @@ export default function PublishFormAlert() {
               startTransition(publishForm);
             }}
           >
-            Proceed {loading && <FaIcons className='animate-spin' />}
+            Proceed {loading && <FaSpinner className='ml-2 animate-spin' />}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { MdTextFields } from 'react-icons/md';
+import { BsTextareaResize } from 'react-icons/bs';
 
 import {
   DesignerComponentProps,
@@ -25,17 +25,20 @@ import {
 } from '../ui/form';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
+import { Slider } from '../ui/slider';
 import { Switch } from '../ui/switch';
 import { useDesigner } from '@/src/hooks/useDesigner';
 import { cn } from '@/src/lib/utils';
 
-const type: ElementsType = 'TextField';
+const type: ElementsType = 'TextAreaField';
 
 const extraAttributes = {
-  label: 'Text field',
+  label: 'Text area',
   description: 'Description',
   required: true,
   placeholder: 'Value here...',
+  rows: 3,
 };
 
 const propertiesSchema = z.object({
@@ -43,9 +46,10 @@ const propertiesSchema = z.object({
   description: z.string().max(200),
   required: z.boolean().default(false),
   placeholder: z.string().max(50),
+  rows: z.number().min(1).max(10),
 });
 
-export const TextFieldFormElement: FormElement = {
+export const TextAreaFieldFormElement: FormElement = {
   type,
 
   construct: (id: string) => ({
@@ -55,8 +59,8 @@ export const TextFieldFormElement: FormElement = {
   }),
 
   designerButtonElement: {
-    icon: MdTextFields,
-    label: 'Text Field',
+    icon: BsTextareaResize,
+    label: 'TextArea Field',
   },
 
   designerComponent: DesignerComponent,
@@ -81,7 +85,8 @@ type CustomInstance = FormElementInstance & {
 
 function DesignerComponent({ elementInstance }: DesignerComponentProps) {
   const element = elementInstance as CustomInstance;
-  const { label, required, placeholder, description } = element.extraAttributes;
+  const { label, required, placeholder, description, rows } =
+    element.extraAttributes;
 
   return (
     <div className='flex flex-col gap-2 w-full'>
@@ -89,7 +94,7 @@ function DesignerComponent({ elementInstance }: DesignerComponentProps) {
         {label}
         {required && <span className='text-red-500'>*</span>}
       </Label>
-      <Input readOnly disabled placeholder={placeholder} />
+      <Textarea readOnly rows={1} disabled placeholder={placeholder} />
       {description && (
         <p className='text-muted-foreground text-[0.8rem]'>{description}</p>
       )}
@@ -106,7 +111,8 @@ function FormComponent({
   const element = elementInstance as CustomInstance;
   const [value, setValue] = useState(defaultValue || '');
   const [error, setError] = useState(false);
-  const { label, required, placeholder, description } = element.extraAttributes;
+  const { label, required, placeholder, description, rows } =
+    element.extraAttributes;
 
   useEffect(() => {
     setError(isInvalid === true);
@@ -118,13 +124,17 @@ function FormComponent({
         {label}
         {required && <span className='text-red-500'>*</span>}
       </Label>
-      <Input
+      <Textarea
         className={cn(error && 'border-red-500')}
+        rows={rows}
         placeholder={placeholder}
         onChange={(e) => setValue(e.target.value)}
         onBlur={(e) => {
           if (!submitValue) return;
-          const valid = TextFieldFormElement.validate(element, e.target.value);
+          const valid = TextAreaFieldFormElement.validate(
+            element,
+            e.target.value
+          );
           setError(!valid);
           if (!valid) return;
           submitValue(element.id, e.target.value);
@@ -158,6 +168,7 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
       description: element.extraAttributes.description,
       required: element.extraAttributes.required,
       placeholder: element.extraAttributes.placeholder,
+      rows: element.extraAttributes.rows,
     },
   });
 
@@ -240,6 +251,25 @@ function PropertiesComponent({ elementInstance }: PropertiesComponentProps) {
                 The description of the field. <br /> It will be displayed below
                 the field.
               </FormDescription>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={control}
+          name='rows'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Rows {form.watch('rows')}</FormLabel>
+              <FormControl>
+                <Slider
+                  defaultValue={[field.value]}
+                  min={1}
+                  max={10}
+                  step={1}
+                  onValueChange={(value) => field.onChange(value[0])}
+                />
+              </FormControl>
             </FormItem>
           )}
         />

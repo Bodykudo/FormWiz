@@ -1,11 +1,39 @@
 import { ElementType, FC } from 'react';
 
-export type ElementsType = 'TextField';
+export type ElementsType =
+  | 'TextField'
+  | 'TitleField'
+  | 'SubTitleField'
+  | 'ParagraphField'
+  | 'SeparatorField'
+  | 'SpacerField'
+  | 'NumberField'
+  | 'TextAreaField'
+  | 'DateField'
+  | 'SelectField'
+  | 'CheckboxField';
 
 export type FormElementInstance = {
   id: string;
   type: ElementsType;
   extraAttributes?: Record<string, any>;
+};
+
+export type SubmitFunction = (key: string, value: string) => void;
+
+export type DesignerComponentProps = {
+  elementInstance: FormElementInstance;
+};
+
+export type FormComponentProps = {
+  elementInstance: FormElementInstance;
+  submitValue?: SubmitFunction;
+  defaultValue?: string;
+  isInvalid?: boolean;
+};
+
+export type PropertiesComponentProps = {
+  elementInstance: FormElementInstance;
 };
 
 export type FormElement = {
@@ -18,13 +46,9 @@ export type FormElement = {
     label: string;
   };
 
-  designerComponent: FC<{
-    elementInstance: FormElementInstance;
-  }>;
-  formComponent: FC<{
-    elementInstance: FormElementInstance;
-  }>;
-  propetiesComponent: FC<{
-    elementInstance: FormElementInstance;
-  }>;
+  designerComponent: FC<DesignerComponentProps>;
+  formComponent: FC<FormComponentProps>;
+  propetiesComponent: FC<PropertiesComponentProps>;
+
+  validate: (formElement: FormElementInstance, currentValue: string) => boolean;
 };

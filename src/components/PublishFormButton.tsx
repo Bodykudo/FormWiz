@@ -1,3 +1,5 @@
+'use client';
+
 import { MdOutlinePublish } from 'react-icons/md';
 import { Button } from './ui/button';
 import { usePublishModal } from '@/src/hooks/usePublishModal';
