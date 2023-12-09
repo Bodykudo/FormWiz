@@ -1,4 +1,35 @@
+import { Metadata } from 'next';
 import Navbar from '@/src/components/Navbar';
+import { GetFormContentByURL } from '@/src/actions/form';
+
+export async function generateMetadata({
+  params: { formURL },
+}: {
+  params: {
+    formURL: string;
+  };
+}): Promise<Metadata> {
+  const form = await GetFormContentByURL(formURL);
+
+  if (!form) {
+    return {};
+  }
+
+  return {
+    title: `FormWiz - ${form.name}`,
+    description: `Submit ${form.name} form now, the form description is: ${form.description}`,
+    openGraph: {
+      title: `FormWiz - ${form.name}`,
+      description: `Submit ${form.name} form now, the form description is: ${form.description}`,
+      url: `https://formwiz.vercel.app/submit/${formURL}`,
+    },
+    twitter: {
+      title: `FormWiz - ${form.name}`,
+      description: `Submit ${form.name} form now, the form description is: ${form.description}`,
+      card: 'summary',
+    },
+  };
+}
 
 export default function SubmitFormLayout({
   children,

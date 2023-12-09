@@ -139,17 +139,13 @@ export async function PublishForm(id: number) {
 }
 
 export async function GetFormContentByURL(url: string) {
-  const { userId } = auth();
-
-  if (!userId) {
-    throw new UserNotFoundError();
-  }
-
   const form = await prismadb.form.update({
     where: {
       shareURL: url,
     },
     select: {
+      name: true,
+      description: true,
       content: true,
     },
     data: {
