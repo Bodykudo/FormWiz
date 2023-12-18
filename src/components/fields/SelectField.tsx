@@ -14,7 +14,7 @@ import {
   FormElement,
   FormElementInstance,
   PropertiesComponentProps,
-} from '@/src/types/elements';
+} from '@/types/elements';
 
 import {
   Form,
@@ -38,8 +38,8 @@ import { Separator } from '../ui/separator';
 import { Button } from '../ui/button';
 import { toast } from '../ui/use-toast';
 
-import { useDesigner } from '@/src/hooks/useDesigner';
-import { cn } from '@/src/lib/utils';
+import { useDesigner } from '@/hooks/useDesigner';
+import { cn } from '@/lib/utils';
 
 const type: ElementsType = 'SelectField';
 

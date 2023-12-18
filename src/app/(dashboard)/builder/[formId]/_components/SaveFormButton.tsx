@@ -4,10 +4,10 @@ import { useTransition } from 'react';
 import { HiSaveAs } from 'react-icons/hi';
 import { FaSpinner } from 'react-icons/fa';
 
-import { UpdateFormContent } from '@/src/actions/form';
-import { Button } from '@/src/components/ui/button';
-import { toast } from '@/src/components/ui/use-toast';
-import { useDesigner } from '@/src/hooks/useDesigner';
+import { UpdateFormContent } from '@/actions/form';
+import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/use-toast';
+import { useDesigner } from '@/hooks/useDesigner';
 
 interface SaveFormButtonProps {
   id: number;

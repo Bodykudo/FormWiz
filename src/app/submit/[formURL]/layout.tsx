@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
-import Navbar from '@/src/components/Navbar';
-import { GetFormContentByURL } from '@/src/actions/form';
+import Navbar from '@/components/Navbar';
+import { GetFormContentByURL } from '@/actions/form';
 
 export async function generateMetadata({
   params: { formURL },

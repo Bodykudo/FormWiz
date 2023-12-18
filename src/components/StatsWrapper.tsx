@@ -1,4 +1,4 @@
-import { GetFormStats } from '@/src/actions/form';
+import { GetFormStats } from '@/actions/form';
 import StatsCards from './StatsCards';
 
 export default async function StatsWrapper() {

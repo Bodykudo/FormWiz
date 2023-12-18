@@ -4,12 +4,12 @@ import { useCallback, useRef, useState, useTransition } from 'react';
 import { HiCursorClick } from 'react-icons/hi';
 import { ImSpinner2 } from 'react-icons/im';
 
-import { SubmitForm } from '@/src/actions/form';
-import { FormElementInstance } from '@/src/types/elements';
+import { SubmitForm } from '@/actions/form';
+import { FormElementInstance } from '@/types/elements';
 
-import { Button } from '@/src/components/ui/button';
-import { toast } from '@/src/components/ui/use-toast';
-import { FormElements } from '@/src/components/FormElements';
+import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/use-toast';
+import { FormElements } from '@/components/FormElements';
 
 interface FormSubmitComponentProps {
   formURL: string;

@@ -1,8 +1,8 @@
 'use server';
 
 import { auth } from '@clerk/nextjs';
-import prismadb from '@/src/lib/prismadb';
-import { formSchema, formSchemaType } from '@/src/types/form';
+import prismadb from '@/lib/prismadb';
+import { formSchema, formSchemaType } from '@/types/form';
 
 class UserNotFoundError extends Error {}
 

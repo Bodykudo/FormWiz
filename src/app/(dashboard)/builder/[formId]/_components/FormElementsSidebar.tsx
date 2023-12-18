@@ -1,8 +1,8 @@
-import { Separator } from '@/src/components/ui/separator';
+import { Separator } from '@/components/ui/separator';
 import {
   formElementsList,
   layoutElementsList,
-} from '@/src/components/FormElements';
+} from '@/components/FormElements';
 import SidebarButtonElement from './SidebarButtonElement';
 
 export default function FormElementsSidebar() {

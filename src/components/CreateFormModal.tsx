@@ -6,8 +6,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ImSpinner2 } from 'react-icons/im';
 
-import { CreateForm } from '@/src/actions/form';
-import { formSchema, formSchemaType } from '@/src/types/form';
+import { CreateForm } from '@/actions/form';
+import { formSchema, formSchemaType } from '@/types/form';
 
 import {
   Dialog,
@@ -22,7 +22,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { toast } from './ui/use-toast';
-import { useFormModal } from '@/src/hooks/useFormModal';
+import { useFormModal } from '@/hooks/useFormModal';
 
 export default function CreateFormModal() {
   const [mounted, setMounted] = useState(false);

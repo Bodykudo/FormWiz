@@ -1,5 +1,5 @@
-import { GetFormContentByURL } from '@/src/actions/form';
-import { FormElementInstance } from '@/src/types/elements';
+import { GetFormContentByURL } from '@/actions/form';
+import { FormElementInstance } from '@/types/elements';
 import FormSubmitComponent from './_components/FormSubmitComponent';
 
 interface BuilderPageProps {

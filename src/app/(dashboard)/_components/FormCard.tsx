@@ -6,8 +6,8 @@ import { FaEdit, FaWpforms } from 'react-icons/fa';
 import { LuView } from 'react-icons/lu';
 import { BiRightArrowAlt } from 'react-icons/bi';
 
-import { Badge } from '@/src/components/ui/badge';
-import { Button } from '@/src/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -15,7 +15,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/src/components/ui/card';
+} from '@/components/ui/card';
 
 interface FormCardProps {
   form: Form;

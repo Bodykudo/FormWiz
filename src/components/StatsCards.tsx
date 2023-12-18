@@ -3,7 +3,7 @@ import { FaWpforms } from 'react-icons/fa';
 import { HiCursorClick } from 'react-icons/hi';
 import { TbArrowBounce } from 'react-icons/tb';
 
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/lib/utils';
 import StatsCard from './StatsCard';
 
 interface StatsCardsProps {

@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
-import { GetFormById } from '@/src/actions/form';
+import { GetFormById } from '@/actions/form';
 
-import StatsCards from '@/src/components/StatsCards';
+import StatsCards from '@/components/StatsCards';
 import SubmissionsTable from './_components/SubmissionsTable';
 import VisitButton from './_components/VisitButton';
 import FormLinkShare from './_components/FormLinkShare';

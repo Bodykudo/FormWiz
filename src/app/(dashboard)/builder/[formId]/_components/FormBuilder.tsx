@@ -14,15 +14,15 @@ import { ImSpinner2 } from 'react-icons/im';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import { Form } from '@prisma/client';
 
-import { Button } from '@/src/components/ui/button';
-import { Input } from '@/src/components/ui/input';
-import { toast } from '@/src/components/ui/use-toast';
-import PublishFormButton from '@/src/components/PublishFormButton';
-import PreviewFormButton from '@/src/components/PreviewFormButton';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { toast } from '@/components/ui/use-toast';
+import PublishFormButton from '@/components/PublishFormButton';
+import PreviewFormButton from '@/components/PreviewFormButton';
 import SaveFormButton from './SaveFormButton';
 import Designer from './Designer';
 import DragOverlayWrapper from './DragOverlayWrapper';
-import { useDesigner } from '@/src/hooks/useDesigner';
+import { useDesigner } from '@/hooks/useDesigner';
 
 interface FormBuilderProps {
   form: Form;

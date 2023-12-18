@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import PreviewFormModal from '@/src/components/PreviewFormModal';
-import PublishFormAlert from '@/src/components/PublishFormAlert';
-import { GetFormById } from '@/src/actions/form';
+import PreviewFormModal from '@/components/PreviewFormModal';
+import PublishFormAlert from '@/components/PublishFormAlert';
+import { GetFormById } from '@/actions/form';
 
 export async function generateMetadata({
   params: { formId },

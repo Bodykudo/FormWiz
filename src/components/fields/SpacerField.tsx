@@ -13,12 +13,12 @@ import {
   FormElement,
   FormElementInstance,
   PropertiesComponentProps,
-} from '@/src/types/elements';
+} from '@/types/elements';
 
 import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form';
 import { Label } from '../ui/label';
 import { Slider } from '../ui/slider';
-import { useDesigner } from '@/src/hooks/useDesigner';
+import { useDesigner } from '@/hooks/useDesigner';
 
 const type: ElementsType = 'SpacerField';
 

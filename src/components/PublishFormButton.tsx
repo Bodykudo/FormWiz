@@ -2,7 +2,7 @@
 
 import { MdOutlinePublish } from 'react-icons/md';
 import { Button } from './ui/button';
-import { usePublishModal } from '@/src/hooks/usePublishModal';
+import { usePublishModal } from '@/hooks/usePublishModal';
 
 interface PublishFormButtonProps {
   id: number;

@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import { Active, DragOverlay, useDndMonitor } from '@dnd-kit/core';
-import { ElementsType } from '@/src/types/elements';
+import { ElementsType } from '@/types/elements';
 
 import { SidebarButtonElementDragOverlay } from './SidebarButtonElement';
-import { FormElements } from '@/src/components/FormElements';
-import { useDesigner } from '@/src/hooks/useDesigner';
+import { FormElements } from '@/components/FormElements';
+import { useDesigner } from '@/hooks/useDesigner';
 
 export default function DragOverlayWrapper() {
   const [draggedItem, setDraggedItem] = useState<Active | null>(null);

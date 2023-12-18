@@ -2,7 +2,7 @@
 
 import { BsFileEarmarkPlus } from 'react-icons/bs';
 import { Button } from './ui/button';
-import { useFormModal } from '@/src/hooks/useFormModal';
+import { useFormModal } from '@/hooks/useFormModal';
 
 export default function CreateFormButton() {
   const { onOpen } = useFormModal();

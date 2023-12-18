@@ -1,7 +1,7 @@
 'use client';
 
 import { RiSeparator } from 'react-icons/ri';
-import { ElementsType, FormElement } from '@/src/types/elements';
+import { ElementsType, FormElement } from '@/types/elements';
 import { Label } from '../ui/label';
 import { Separator } from '../ui/separator';
 

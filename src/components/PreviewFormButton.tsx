@@ -2,7 +2,7 @@
 
 import { MdPreview } from 'react-icons/md';
 import { Button } from './ui/button';
-import { usePreviewModal } from '@/src/hooks/usePreviewModal';
+import { usePreviewModal } from '@/hooks/usePreviewModal';
 
 export default function PreviewFormButton() {
   const { onOpen } = usePreviewModal();

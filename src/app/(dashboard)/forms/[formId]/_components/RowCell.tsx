@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import { format } from 'date-fns';
 
-import { ElementsType } from '@/src/types/elements';
-import { TableCell } from '@/src/components/ui/table';
-import { Badge } from '@/src/components/ui/badge';
-import { Checkbox } from '@/src/components/ui/checkbox';
+import { ElementsType } from '@/types/elements';
+import { TableCell } from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export default function RowCell({
   type,

@@ -1,6 +1,6 @@
 import { formatDistance } from 'date-fns';
-import { GetFormWithSubmissions } from '@/src/actions/form';
-import { ElementsType, FormElementInstance } from '@/src/types/elements';
+import { GetFormWithSubmissions } from '@/actions/form';
+import { ElementsType, FormElementInstance } from '@/types/elements';
 
 import {
   Table,
@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/src/components/ui/table';
+} from '@/components/ui/table';
 import RowCell from './RowCell';
 
 interface SubmissionsTableProps {

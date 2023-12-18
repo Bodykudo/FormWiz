@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import { DesktopIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons';
-import { cn } from '@/src/lib/utils';
+import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger } from './ui/tabs';
 
 export default function ModeSwitcher() {

@@ -13,7 +13,7 @@ import {
   FormElement,
   FormElementInstance,
   PropertiesComponentProps,
-} from '@/src/types/elements';
+} from '@/types/elements';
 
 import {
   Form,
@@ -28,8 +28,8 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Slider } from '../ui/slider';
 import { Switch } from '../ui/switch';
-import { useDesigner } from '@/src/hooks/useDesigner';
-import { cn } from '@/src/lib/utils';
+import { useDesigner } from '@/hooks/useDesigner';
+import { cn } from '@/lib/utils';
 
 const type: ElementsType = 'TextAreaField';
 

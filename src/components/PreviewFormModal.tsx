@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { FormElements } from './FormElements';
 import { Dialog, DialogContent } from './ui/dialog';
-import { useDesigner } from '@/src/hooks/useDesigner';
-import { usePreviewModal } from '@/src/hooks/usePreviewModal';
+import { useDesigner } from '@/hooks/useDesigner';
+import { usePreviewModal } from '@/hooks/usePreviewModal';
 
 export default function PreviewFormModal() {
   const [mounted, setMounted] = useState(false);

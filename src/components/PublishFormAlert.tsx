@@ -15,8 +15,8 @@ import {
   AlertDialogTitle,
 } from './ui/alert-dialog';
 import { toast } from './ui/use-toast';
-import { usePublishModal } from '@/src/hooks/usePublishModal';
-import { PublishForm } from '@/src/actions/form';
+import { usePublishModal } from '@/hooks/usePublishModal';
+import { PublishForm } from '@/actions/form';
 
 export default function PublishFormAlert() {
   const [mounted, setMounted] = useState(false);

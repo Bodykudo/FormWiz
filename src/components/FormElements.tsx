@@ -1,4 +1,4 @@
-import { ElementsType, FormElement } from '@/src/types/elements';
+import { ElementsType, FormElement } from '@/types/elements';
 import { TextFieldFormElement } from './fields/TextField';
 import { TitleFieldFormElement } from './fields/TitleField';
 import { SubTitleFieldFormElement } from './fields/SubTitleField';

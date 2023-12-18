@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { FormElementInstance } from '@/src/types/elements';
+import { FormElementInstance } from '@/types/elements';
 
 interface useDesignerStore {
   elements: FormElementInstance[];

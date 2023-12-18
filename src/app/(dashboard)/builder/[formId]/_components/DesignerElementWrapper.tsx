@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import { BiSolidTrash } from 'react-icons/bi';
 import { useDraggable, useDroppable } from '@dnd-kit/core';
-import { FormElementInstance } from '@/src/types/elements';
+import { FormElementInstance } from '@/types/elements';
 
-import { Button } from '@/src/components/ui/button';
-import { FormElements } from '@/src/components/FormElements';
-import { useDesigner } from '@/src/hooks/useDesigner';
-import { cn } from '@/src/lib/utils';
+import { Button } from '@/components/ui/button';
+import { FormElements } from '@/components/FormElements';
+import { useDesigner } from '@/hooks/useDesigner';
+import { cn } from '@/lib/utils';
 
 interface DesignerElementWrapperProps {
   element: FormElementInstance;

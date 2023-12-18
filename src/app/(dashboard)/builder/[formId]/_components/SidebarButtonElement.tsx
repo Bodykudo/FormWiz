@@ -1,9 +1,9 @@
 'use client';
 
 import { useDraggable } from '@dnd-kit/core';
-import { FormElement } from '@/src/types/elements';
-import { Button } from '@/src/components/ui/button';
-import { cn } from '@/src/lib/utils';
+import { FormElement } from '@/types/elements';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 interface SidebarButtonElement {
   formElement: FormElement;

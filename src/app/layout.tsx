@@ -4,8 +4,8 @@ import NextTopLoader from 'nextjs-toploader';
 
 import './globals.css';
 
-import { Toaster } from '@/src/components/ui/toaster';
-import { ThemeProvider } from '@/src/components/ThemeProvider';
+import { Toaster } from '@/components/ui/toaster';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import AuthProvider from '../components/AuthProvider';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'FormWiz - Create and Manage Forms',
     type: 'website',
-    images: ['/mockup.png'],
+    images: ['https://formwiz.vercel.app/mockup.png'],
     url: 'https://formwiz.vercel.app/',
     description:
       'FormWiz: Effortlessly create and manage forms with our intuitive drag-and-drop tools. Design the forms you need and seamlessly publish them for people to submit. Simplify form creation with FormWiz!',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
       'FormWiz: Effortlessly create and manage forms with our intuitive drag-and-drop tools. Design the forms you need and seamlessly publish them for people to submit. Simplify form creation with FormWiz!',
     card: 'summary_large_image',
     creator: 'a_m_s666',
-    images: ['/mockup.png'],
+    images: ['https://formwiz.vercel.app/mockup.png'],
   },
 };
 
