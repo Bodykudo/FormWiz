@@ -2,7 +2,7 @@
   <img src="public/logo-dark.png" height="200px" />
 </div>
 
-# Amigos AI
+# FormWiz
 
 FormWiz: Effortlessly create and manage forms with our intuitive drag-and-drop tools. Design the forms you need and seamlessly publish them for people to submit. Simplify form creation with FormWiz!
 
