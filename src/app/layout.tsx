@@ -14,7 +14,12 @@ export const metadata: Metadata = {
   title: 'FormWiz - Create and Manage Forms',
   description:
     'FormWiz: Effortlessly create and manage forms with our intuitive drag-and-drop tools. Design the forms you need and seamlessly publish them for people to submit. Simplify form creation with FormWiz!',
-  authors: { name: 'Abdallah Magdy' },
+  generator: 'Next.js',
+  manifest: '/manifest.json',
+  authors: {
+    name: 'Abdallah Magdy',
+    url: 'https://www.linkedin.com/in/abdallahmagdy',
+  },
   keywords: [
     'Form Creation',
     'Drag and Drop Forms',
@@ -38,6 +43,12 @@ export const metadata: Metadata = {
     creator: 'a_m_s666',
     images: ['https://formwiz.vercel.app/mockup.png'],
   },
+  viewport:
+    'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
+  icons: [
+    { rel: 'apple-touch-icon', url: 'icons/icon-128x128.png' },
+    { rel: 'icon', url: 'icons/icon-128x128.png' },
+  ],
 };
 
 export default function RootLayout({
