@@ -30,8 +30,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'FormWiz - Create and Manage Forms',
     type: 'website',
-    images: ['https://formwiz.vercel.app/mockup.png'],
-    url: 'https://formwiz.vercel.app/',
+    images: [`${process.env.NEXT_PUBLIC_APP_URL}/mockup.png`],
+    url: process.env.NEXT_PUBLIC_APP_URL,
     description:
       'FormWiz: Effortlessly create and manage forms with our intuitive drag-and-drop tools. Design the forms you need and seamlessly publish them for people to submit. Simplify form creation with FormWiz!',
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
       'FormWiz: Effortlessly create and manage forms with our intuitive drag-and-drop tools. Design the forms you need and seamlessly publish them for people to submit. Simplify form creation with FormWiz!',
     card: 'summary_large_image',
     creator: 'a_m_s666',
-    images: ['https://formwiz.vercel.app/mockup.png'],
+    images: [`${process.env.NEXT_PUBLIC_APP_URL}/mockup.png`],
   },
   viewport:
     'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',

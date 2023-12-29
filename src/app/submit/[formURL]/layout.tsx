@@ -21,7 +21,7 @@ export async function generateMetadata({
     openGraph: {
       title: `FormWiz - ${form.name}`,
       description: `Submit ${form.name} form now, the form description is: ${form.description}`,
-      url: `https://formwiz.vercel.app/submit/${formURL}`,
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/submit/${formURL}`,
     },
     twitter: {
       title: `FormWiz - ${form.name}`,

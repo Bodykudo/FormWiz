@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   title: 'FormWiz - Sign In',
   openGraph: {
     title: 'FormWiz - Sign In',
-    images: ['https://formwiz.vercel.app/mockup.png'],
+    images: [`${process.env.NEXT_PUBLIC_APP_URL}/mockup.png`],
   },
   twitter: {
     title: 'FormWiz - Sign In',
-    images: ['https://formwiz.vercel.app/mockup.png'],
+    images: [`${process.env.NEXT_PUBLIC_APP_URL}/mockup.png`],
   },
 };
 
