@@ -120,6 +120,7 @@ function FormComponent({
   submitValue,
   defaultValue,
   isInvalid,
+  isDisabled = false,
 }: FormComponentProps) {
   const element = elementInstance as CustomInstance;
   const [value, setValue] = useState(defaultValue || '');
@@ -146,6 +147,7 @@ function FormComponent({
           setError(!valid);
           submitValue(element.id, value);
         }}
+        disabled={isDisabled}
       >
         <SelectTrigger className={cn('w-full', error && 'border-red-500')}>
           <SelectValue placeholder={placeholder} />

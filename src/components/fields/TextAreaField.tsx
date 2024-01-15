@@ -107,6 +107,7 @@ function FormComponent({
   submitValue,
   defaultValue,
   isInvalid,
+  isDisabled = false,
 }: FormComponentProps) {
   const element = elementInstance as CustomInstance;
   const [value, setValue] = useState(defaultValue || '');
@@ -140,6 +141,7 @@ function FormComponent({
           submitValue(element.id, e.target.value);
         }}
         value={value}
+        disabled={isDisabled}
       />
       {description && (
         <p

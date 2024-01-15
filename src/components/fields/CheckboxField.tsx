@@ -105,6 +105,7 @@ function FormComponent({
   submitValue,
   defaultValue,
   isInvalid,
+  isDisabled = false,
 }: FormComponentProps) {
   const element = elementInstance as CustomInstance;
   const [value, setValue] = useState(defaultValue === 'true');
@@ -134,6 +135,7 @@ function FormComponent({
           setError(!valid);
           submitValue(element.id, stringValue);
         }}
+        disabled={isDisabled}
       />
 
       <div className='grid gap-1 5 leading-none'>

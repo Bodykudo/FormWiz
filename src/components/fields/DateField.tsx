@@ -111,6 +111,7 @@ function FormComponent({
   submitValue,
   defaultValue,
   isInvalid,
+  isDisabled = false,
 }: FormComponentProps) {
   const element = elementInstance as CustomInstance;
   const [date, setDate] = useState<Date | undefined>(
@@ -138,6 +139,7 @@ function FormComponent({
               !date && 'text-muted-foreground',
               error && 'border-red-500'
             )}
+            disabled={isDisabled}
           >
             <CalendarIcon className='mr-2 h-4 w-4' />
             {date ? format(date, 'PPP') : <span>Pick a date</span>}
