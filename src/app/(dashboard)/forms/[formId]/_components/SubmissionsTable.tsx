@@ -11,6 +11,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import RowCell from './RowCell';
+import SubmissionsPages from './SubmissionsPages';
 
 interface SubmissionsTableProps {
   id: number;
@@ -72,17 +73,18 @@ export default async function SubmissionsTable({ id }: SubmissionsTableProps) {
 
   return (
     <>
-      <h1 className='text-2xl font-bold my-4'>Submissions</h1>
-      <div className='rounded-md border'>
+      <h1 className="text-2xl font-bold my-4">Submissions</h1>
+      <SubmissionsPages fields={columns} submissions={rows} />
+      <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
               {columns.map((column) => (
-                <TableHead key={column.id} className='upper'>
+                <TableHead key={column.id} className="upper">
                   {column.label}
                 </TableHead>
               ))}
-              <TableHead className='text-muted-foreground text-right upper'>
+              <TableHead className="text-muted-foreground text-right upper">
                 Submitted at
               </TableHead>
             </TableRow>
@@ -97,7 +99,7 @@ export default async function SubmissionsTable({ id }: SubmissionsTableProps) {
                     value={row[column.id]}
                   />
                 ))}
-                <TableCell className='text-muted-foreground text-right'>
+                <TableCell className="text-muted-foreground text-right">
                   {formatDistance(row.submittedAt, new Date(), {
                     addSuffix: true,
                   })}
