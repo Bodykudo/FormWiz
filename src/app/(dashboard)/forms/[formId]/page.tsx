@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { GetFormById } from '@/actions/form';
 
 import StatsCards from '@/components/StatsCards';
-import SubmissionsTable from './_components/SubmissionsTable';
+import SubmissionsDetails from './_components/SubmissionsDetails';
 import VisitButton from './_components/VisitButton';
 import FormLinkShare from './_components/FormLinkShare';
 
@@ -53,7 +53,7 @@ export default async function FormDetailsPage({
         }}
       />
       <div className='container pt-10'>
-        <SubmissionsTable id={form.id} />
+        <SubmissionsDetails id={form.id} />
       </div>
     </>
   );

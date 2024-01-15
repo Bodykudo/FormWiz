@@ -30,6 +30,7 @@ export type FormComponentProps = {
   submitValue?: SubmitFunction;
   defaultValue?: string;
   isInvalid?: boolean;
+  isDisabled?: boolean;
 };
 
 export type PropertiesComponentProps = {
